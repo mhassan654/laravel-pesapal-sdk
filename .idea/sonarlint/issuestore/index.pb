@@ -17,3 +17,6 @@ S
 #src/Exceptions/PesapalException.php,b/d/bdeff0f8228111ffe958e262dfdc3a18a39c0467
 Q
 !src/Contracts/PesapalContract.php,7/4/74ab19bc79af7b16c94b97f3fcab38d9cdafb49e
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

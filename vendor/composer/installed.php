@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'mhassan654/pesapal',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '3900a02cc30b70e3910ee760abfe9d1b7df5b1cb',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -377,9 +377,9 @@
             'dev_requirement' => false,
         ),
         'mhassan654/pesapal' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '3900a02cc30b70e3910ee760abfe9d1b7df5b1cb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
