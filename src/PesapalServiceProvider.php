@@ -17,7 +17,7 @@ class PesapalServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'pesapal');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'pesapal');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+         $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -49,6 +49,7 @@ class PesapalServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__ . '/../config/pesapal.php', 'pesapal');
 
