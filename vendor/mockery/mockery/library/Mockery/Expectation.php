@@ -16,7 +16,6 @@ use Mockery\Matcher\AnyArgs;
 use Mockery\Matcher\AndAnyOtherArgs;
 use Mockery\Matcher\ArgumentListMatcher;
 use Mockery\Matcher\MultiArgumentClosure;
-use PHPUnit\Framework\Constraint\Constraint;
 
 class Expectation implements ExpectationInterface
 {
@@ -394,15 +393,9 @@ class Expectation implements ExpectationInterface
                 $expected = new $matcher($expected);
             }
         }
-
-        if ($expected instanceof \Mockery\Matcher\MatcherInterface) {
+        if ($expected instanceof \Mockery\Matcher\MatcherAbstract) {
             return $expected->match($actual);
         }
-
-        if ($expected instanceof Constraint) {
-            return (bool) $expected->evaluate($actual, '', true);
-        }
-
         if ($expected instanceof \Hamcrest\Matcher || $expected instanceof \Hamcrest_Matcher) {
             @trigger_error('Hamcrest package has been deprecated and will be removed in 2.0', E_USER_DEPRECATED);
 

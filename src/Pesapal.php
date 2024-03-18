@@ -2,9 +2,11 @@
 
 namespace Mhassan654\Pesapal;
 
+use Illuminate\Support\Facades\Route;
 use Mhassan654\Pesapal\Contracts\PesapalContract;
 use Mhassan654\Pesapal\Exceptions\PesapalException;
 use Mhassan654\Pesapal\OAuth\OAuthToken;
+use Mockery\Exception;
 use Random\RandomException;
 
 class Pesapal implements PesapalContract
@@ -27,47 +29,49 @@ class Pesapal implements PesapalContract
      */
     public function makePayment($params)
     {
-        $billing_object = (object)[
-            "email_address" => "john.doe@example.com",
-            "phone_number" => null,
-            "country_code" => "",
-            "first_name" => "John",
-            "middle_name" => "",
-            "last_name" => "Doe",
-            "line_1" => "",
-            "line_2" => "",
-            "city" => "",
-            "state" => "",
-            "postal_code" => null,
-            "zip_code" => null
-        ];
+//        $billing_object = (object)[
+//            "email_address" => "john.doe@example.com",
+//            "phone_number" => null,
+//            "country_code" => "",
+//            "first_name" => "John",
+//            "middle_name" => "",
+//            "last_name" => "Doe",
+//            "line_1" => "",
+//            "line_2" => "",
+//            "city" => "",
+//            "state" => "",
+//            "postal_code" => null,
+//            "zip_code" => null
+//        ];
+//
+//        $defaults = [ // the defaults will be overidden if set in $params
+//            'id' => $this->random_reference(),
+//            'amount' => '1',
+//            'description' => 'sample description',
+//            'callback_url' => config('pesapal.callback_route'),
+//            "notification_id" => "fe078e53-78da-4a83-aa89-e7ded5c456e6",
+//            "branch"=> "Store Name - HQ",
+//            'billing_address' => $billing_object
+//        ];
+//
+//        $callback_url = url('/') . '/pesapal-callback';
+//
+//
+//        if (!array_key_exists('currency', $params) && config('pesapal.currency') != null) {
+//            $params['currency'] = config('pesapal.currency');
+//        }
+//
+//        $params = array_merge($defaults, $params);
 
-        $defaults = [ // the defaults will be overidden if set in $params
-            'id' => $this->random_reference(),
-            'amount' => '1',
-            'description' => 'sample description',
-            'callback_url' => config('pesapal.callback_route'),
-            "notification_id" => "fe078e53-78da-4a83-aa89-e7ded5c456e6",
-            "branch"=> "Store Name - HQ",
-            'billing_address' => $billing_object
-        ];
+//        if (!config('pesapal.callback_route')) {
+//            throw new PesapalException("callback route not provided");
+//        } else {
+//            if (!Route::has(config('pesapal.callback_route'))) {
+//                throw new PesapalException("callback route does not exist");
+//            }
+//        }
 
-        $callback_url = url('/') . '/pesapal-callback';
-
-
-        if (!array_key_exists('currency', $params) && config('pesapal.currency') != null) {
-            $params['currency'] = config('pesapal.currency');
-        }
-
-        $params = array_merge($defaults, $params);
-
-        if (!config('pesapal.callback_route')) {
-            throw new PesapalException("callback route not provided");
-        } else {
-            if (!Route::has(config('pesapal.callback_route'))) {
-                throw new PesapalException("callback route does not exist");
-            }
-        }
+//        dd( json_encode([$params]));
 
         $token = self::getToken();
 
@@ -83,9 +87,9 @@ class Pesapal implements PesapalContract
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => json_encode([ // Encode data as associative array
+            CURLOPT_POSTFIELDS => json_encode( // Encode data as associative array
                 $params
-            ]),
+            ),
             CURLOPT_HTTPHEADER => array(
                 self::ACCEPT,
                 self::CONTENT_TYPE,
@@ -95,6 +99,8 @@ class Pesapal implements PesapalContract
 
         $response = curl_exec($curl);
         curl_close($curl);
+
+//        dd($response);
         return $response;
     }
 
@@ -142,28 +148,30 @@ class Pesapal implements PesapalContract
             }
 
             //UPDATE YOUR DB TABLE WITH NEW STATUS FOR TRANSACTION WITH $OrderTrackingId
-//            $separator = explode('@', config('pesapal.ipn'));
-//            $controller = $separator[0];
-//            $method = $separator[1];
-//            $class = '\App\Http\Controllers\\' . $controller;
-//            $payment = new $class();
+            $separator = explode('@', config('pesapal.ipn_controller'));
+            $controller = $separator[0];
+            $method = $separator[1];
+            $class = '\App\Http\Controllers\\' . $controller;
+            $payment = new $class();
+            $payment->$method($response);
 //            $payment->$method($OrderTrackingId, $status, $payment_method, $OrderMerchantReference);
 
-            $controller = config('pesapal.ipn_controller');
-
-            if ($controller) {
-                // Separate namespace, controller name, and method
-                $parts = explode('@', $controller);
-                $namespace = $parts[0];
-                $method = $parts[1];
-
-                // Leverage dependency injection or call the method based on your preference
-                $paymentController = app($namespace);
-                $paymentController->$method($OrderTrackingId, $status, $payment_method, $OrderMerchantReference);
-            } else {
-                // Handle the case where no controller is defined
-                throw new PesapalException('Pesapal IPN controller not defined in configuration.');
-            }
+//            $controller = config('pesapal.ipn_controller');
+//
+//            if ($controller) {
+//                // Separate namespace, controller name, and method
+//                $parts = explode('@', $controller);
+//                $namespace = $parts[0];
+//                $method = $parts[1];
+//
+//                // Leverage dependency injection or call the method based on your preference
+//                $paymentController = app($namespace);
+//                $paymentController->$method($response);
+////                $paymentController->$method($OrderTrackingId, $status, $payment_method, $OrderMerchantReference);
+//            } else {
+//                // Handle the case where no controller is defined
+//                throw new PesapalException('Pesapal IPN controller not defined in configuration.');
+//            }
 
             if ($status != "PENDING") {
                 $resp = "OrderNotificationType=$OrderNotificationType&OrderTrackingId=$OrderTrackingId&OrderMerchantReference=$OrderMerchantReference";
@@ -218,8 +226,9 @@ class Pesapal implements PesapalContract
      * @param $url
      * @param string $type
      * @return bool|string
+     * @throws PesapalException
      */
-    function registerIPN($url, string $type="GET")
+    public function registerIPN($url, string $type="GET")
     {
         $token = self::getToken();
 
@@ -240,6 +249,36 @@ class Pesapal implements PesapalContract
                 "url" => $url,
                 "ipn_notification_type" =>$type
             ]),
+            CURLOPT_HTTPHEADER => array(
+                self::ACCEPT,
+                self::CONTENT_TYPE,
+                "Authorization: Bearer $token",  // Include bearer token in header
+            ),
+        ));
+
+        $status = curl_exec($curl);
+        curl_close($curl);
+        return $status;
+    }
+
+    function getRegisterIPNlist()
+    {
+        $token = self::getToken();
+
+        $list_link = $this->api_link("URLSetup/GetIpnList");
+
+        //get transaction status
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $list_link,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+
             CURLOPT_HTTPHEADER => array(
                 self::ACCEPT,
                 self::CONTENT_TYPE,
@@ -284,17 +323,25 @@ class Pesapal implements PesapalContract
     {
         $live = 'https://cybqa.pesapal.com/pesapalv3/api/';
         $demo = 'https://pay.pesapal.com/v3/api/';
-        return (config('pesapal.live') ? $live : $demo) . $path;
+        return config('pesapal.live') ? $demo : $live . $path;
     }
 
 
     /**
-     * @return OAuthToken
+     * @return string
+     * @throws PesapalException
      */
-    private static function getToken(): OAuthToken
+    private static function getToken(): string
     {
         $consumer_key = config('pesapal.consumer_key');
         $consumer_secret = config('pesapal.consumer_secret');
-        return new OAuthToken($consumer_key, $consumer_secret);
+
+        if (!$consumer_key && !$consumer_secret) {
+            throw new PesapalException("Consumer key and secrete keys are required");
+        } else {
+            $init_token = new OAuthToken($consumer_key, $consumer_secret);
+           return (string)$init_token;
+        }
+
     }
 }

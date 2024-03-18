@@ -1,10 +1,14 @@
 
-lphp:S103©"KSplit this 151 characters long line (which is greater than 120 authorized).(ã¨©’şÿÿÿÿ8¾ğâ±ä1
-b	php:S1784k"AExplicitly mention the visibility of this method "redirectToIPN".(Œ¸Î¢úÿÿÿÿ8¿ğâ±ä1
-\	php:S1784Ş"?Explicitly mention the visibility of this method "registerIPN".(©İ•Ğ8¿ğâ±ä1
-php:S116"XRename this field "$callback_route" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ÌÍ…—ùÿÿÿÿ8™ÂÜ±ä1J$82706be1-f909-4a47-b68f-789533ed853e
-…php:S117k"eRename this parameter "$OrderNotificationType" to match the regular expression ^[a-z_][a-zA-Z0-9_]*$.(Œ¸Î¢úÿÿÿÿ8Àğâ±ä1
-†php:S117k"fRename this parameter "$OrderMerchantReference" to match the regular expression ^[a-z_][a-zA-Z0-9_]*$.(Œ¸Î¢úÿÿÿÿ8Áğâ±ä1
-php:S117k"_Rename this parameter "$OrderTrackingId" to match the regular expression ^[a-z_][a-zA-Z0-9_]*$.(Œ¸Î¢úÿÿÿÿ8Áğâ±ä1
-N	php:S14817"2Remove this unused "$callback_url" local variable.(Äø¥¦8Áğâ±ä1
-z	php:S1068"3Remove this unused "$callback_route" private field.(ÌÍ…—ùÿÿÿÿ8šÂÜ±ä1J$3feef64a-5504-4506-b198-845aaa8d1756
+’php:S103±"KSplit this 151 characters long line (which is greater than 120 authorized).(ã¨©’şÿÿÿÿ8äŒÖ‰å1J$871039f8-240a-4d1b-98e8-c183226e6d8f
+ˆ	php:S1784q"AExplicitly mention the visibility of this method "redirectToIPN".(Œ¸Î¢úÿÿÿÿ8äŒÖ‰å1J$d55046a6-fe6c-4296-b452-8ca16bef548a
+‰	php:S1784ˆ"FExplicitly mention the visibility of this method "getRegisterIPNlist".(¥‡û®8äŒÖ‰å1J$d789fe9c-6128-4d86-b676-704c08c28d73
+php:S116"XRename this field "$callback_route" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ÌÍ…—ùÿÿÿÿ8äŒÖ‰å1J$cb82c1e4-474a-46b8-a178-d9c112d0e980
+«php:S117q"eRename this parameter "$OrderNotificationType" to match the regular expression ^[a-z_][a-zA-Z0-9_]*$.(Œ¸Î¢úÿÿÿÿ8åŒÖ‰å1J$02c562b3-f968-4e27-aa93-e3978060d4d6
+¬php:S117q"fRename this parameter "$OrderMerchantReference" to match the regular expression ^[a-z_][a-zA-Z0-9_]*$.(Œ¸Î¢úÿÿÿÿ8åŒÖ‰å1J$e1e00899-60d1-4f85-87f1-0cad079a3863
+¥php:S117q"_Rename this parameter "$OrderTrackingId" to match the regular expression ^[a-z_][a-zA-Z0-9_]*$.(Œ¸Î¢úÿÿÿÿ8åŒÖ‰å1J$362d9cd1-5cf9-40be-b647-56523753ea33
+w	php:S1481"4Remove this unused "$payment_method" local variable.(½İæ8æŒÖ‰å1J$e80505d2-3f5f-46a1-b35b-5f099d2e932b
+z	php:S1068"3Remove this unused "$callback_route" private field.(ÌÍ…—ùÿÿÿÿ8æŒÖ‰å1J$1401d47a-460f-43d6-8dfa-5d07b9cea69b
+ephp:S125B"Remove this commented out code.(Õ½ƒ”şÿÿÿÿ8»¦¬å1J$307a8b22-99ae-4359-b65b-a5291dc8a2a4
+`php:S125J"Remove this commented out code.(Ü²ò½8¬¦Àå1J$d81af593-80a9-4327-b808-1280db73b0bb
+?php:S125g"Remove this commented out code.(±êŞ¬ıÿÿÿÿ8ı½Àå1
+fphp:S125"Remove this commented out code.(€ñŸ¦şÿÿÿÿ8éŒÖ‰å1J$246a8ceb-e16f-4cbe-84c4-e1851005efa7
