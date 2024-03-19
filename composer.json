@@ -1,9 +1,19 @@
 {
-    "name": "mhassan654/pesapal",
+    "name": "mhassan654/laravel-pesapal-sdk",
     "description": "Laravel package to manage current pesapal payment api, can be used for web and restful apis",
     "keywords": [
         "mhassan654",
-        "pesapal"
+        "pesapal",
+        "laravel",
+        "laravel 7",
+        "laravel 8",
+        "laravel 9",
+        "MTN",
+        "Airtel",
+        "payments",
+        "VISA",
+        "Mastercard",
+        "Ezee Money"
     ],
     "homepage": "https://github.com/mhassan654/pesapal",
     "license": "MIT",
