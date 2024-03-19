@@ -2,6 +2,7 @@
 
 namespace Mhassan654\Pesapal;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Mhassan654\Pesapal\Contracts\PesapalContract;
 use Mhassan654\Pesapal\Exceptions\PesapalException;
@@ -29,52 +30,7 @@ class Pesapal implements PesapalContract
      */
     public function makePayment($params)
     {
-//        $billing_object = (object)[
-//            "email_address" => "john.doe@example.com",
-//            "phone_number" => null,
-//            "country_code" => "",
-//            "first_name" => "John",
-//            "middle_name" => "",
-//            "last_name" => "Doe",
-//            "line_1" => "",
-//            "line_2" => "",
-//            "city" => "",
-//            "state" => "",
-//            "postal_code" => null,
-//            "zip_code" => null
-//        ];
-//
-//        $defaults = [ // the defaults will be overidden if set in $params
-//            'id' => $this->random_reference(),
-//            'amount' => '1',
-//            'description' => 'sample description',
-//            'callback_url' => config('pesapal.callback_route'),
-//            "notification_id" => "fe078e53-78da-4a83-aa89-e7ded5c456e6",
-//            "branch"=> "Store Name - HQ",
-//            'billing_address' => $billing_object
-//        ];
-//
-//        $callback_url = url('/') . '/pesapal-callback';
-//
-//
-//        if (!array_key_exists('currency', $params) && config('pesapal.currency') != null) {
-//            $params['currency'] = config('pesapal.currency');
-//        }
-//
-//        $params = array_merge($defaults, $params);
-
-//        if (!config('pesapal.callback_route')) {
-//            throw new PesapalException("callback route not provided");
-//        } else {
-//            if (!Route::has(config('pesapal.callback_route'))) {
-//                throw new PesapalException("callback route does not exist");
-//            }
-//        }
-
-//        dd( json_encode([$params]));
-
         $token = self::getToken();
-
         $submit_order_link = $this->api_link('Transactions/SubmitOrderRequest');
 
         $curl = curl_init();
@@ -99,8 +55,6 @@ class Pesapal implements PesapalContract
 
         $response = curl_exec($curl);
         curl_close($curl);
-
-//        dd($response);
         return $response;
     }
 
@@ -114,7 +68,7 @@ class Pesapal implements PesapalContract
     {
         $token =self::getToken();
 
-        $statusrequestAPI = $this->api_link('Transactions/GetTransactionStatus');
+        $statusrequestAPI = $this->api_link("Transactions/GetTransactionStatus?orderTrackingId=$OrderTrackingId");
 
         if ($OrderNotificationType == "IPNCHANGE" && $OrderTrackingId != '') {
             //get transaction status
@@ -152,26 +106,8 @@ class Pesapal implements PesapalContract
             $controller = $separator[0];
             $method = $separator[1];
             $class = '\App\Http\Controllers\\' . $controller;
-            $payment = new $class();
-            $payment->$method($response);
-//            $payment->$method($OrderTrackingId, $status, $payment_method, $OrderMerchantReference);
-
-//            $controller = config('pesapal.ipn_controller');
-//
-//            if ($controller) {
-//                // Separate namespace, controller name, and method
-//                $parts = explode('@', $controller);
-//                $namespace = $parts[0];
-//                $method = $parts[1];
-//
-//                // Leverage dependency injection or call the method based on your preference
-//                $paymentController = app($namespace);
-//                $paymentController->$method($response);
-////                $paymentController->$method($OrderTrackingId, $status, $payment_method, $OrderMerchantReference);
-//            } else {
-//                // Handle the case where no controller is defined
-//                throw new PesapalException('Pesapal IPN controller not defined in configuration.');
-//            }
+            $payment = new $class($this);
+            $payment->$method($OrderTrackingId, $status, $payment_method, $OrderMerchantReference);
 
             if ($status != "PENDING") {
                 $resp = "OrderNotificationType=$OrderNotificationType&OrderTrackingId=$OrderTrackingId&OrderMerchantReference=$OrderMerchantReference";
@@ -180,7 +116,9 @@ class Pesapal implements PesapalContract
                 ob_flush();
                 exit;
             }
+            return $payment;
         }
+        throw new PesapalException("something went wrong");
     }
 
 
@@ -190,6 +128,7 @@ class Pesapal implements PesapalContract
      * @param $order_tracking_id
      *
      * @return bool|string
+     * @throws PesapalException
      */
     public function getTransactionStatus($order_tracking_id)
     {

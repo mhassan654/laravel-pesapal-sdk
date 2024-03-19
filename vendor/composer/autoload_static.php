@@ -439,7 +439,7 @@ class ComposerStaticInitebf96f08e00f13680313658c0dd182d4
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/lexer/src',
+            0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
         ),
         'Dflydev\\DotAccessData\\' => 
         array (

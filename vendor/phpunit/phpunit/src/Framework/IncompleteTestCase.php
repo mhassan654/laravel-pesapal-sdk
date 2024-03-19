@@ -9,8 +9,6 @@
  */
 namespace PHPUnit\Framework;
 
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
-
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
@@ -51,7 +49,7 @@ final class IncompleteTestCase extends TestCase
     /**
      * Returns a string representation of the test case.
      *
-     * @throws InvalidArgumentException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function toString(): string
     {
