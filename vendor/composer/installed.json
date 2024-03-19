@@ -2188,17 +2188,17 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v6.49.1",
-            "version_normalized": "6.49.1.0",
+            "version": "v6.49.3",
+            "version_normalized": "6.49.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "411142fb1f29a75450f78692b205a3042c63f1ac"
+                "reference": "c9010622e39ad800d1218cdaa95741760be1c0aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/411142fb1f29a75450f78692b205a3042c63f1ac",
-                "reference": "411142fb1f29a75450f78692b205a3042c63f1ac",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/c9010622e39ad800d1218cdaa95741760be1c0aa",
+                "reference": "c9010622e39ad800d1218cdaa95741760be1c0aa",
                 "shasum": ""
             },
             "require": {
@@ -2232,7 +2232,7 @@
                 "phpunit/phpunit": "Allow using PHPUnit for testing (^8.5.21|^9.5.10|^10.0).",
                 "symfony/process": "Required to use Orchestra\\Testbench\\remote function (^5.0)."
             },
-            "time": "2024-03-15T12:03:52+00:00",
+            "time": "2024-03-19T01:14:57+00:00",
             "bin": [
                 "testbench"
             ],
@@ -2482,17 +2482,17 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.62",
-            "version_normalized": "1.10.62.0",
+            "version": "1.10.63",
+            "version_normalized": "1.10.63.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "cd5c8a1660ed3540b211407c77abf4af193a6af9"
+                "reference": "ad12836d9ca227301f5fb9960979574ed8628339"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cd5c8a1660ed3540b211407c77abf4af193a6af9",
-                "reference": "cd5c8a1660ed3540b211407c77abf4af193a6af9",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ad12836d9ca227301f5fb9960979574ed8628339",
+                "reference": "ad12836d9ca227301f5fb9960979574ed8628339",
                 "shasum": ""
             },
             "require": {
@@ -2501,7 +2501,7 @@
             "conflict": {
                 "phpstan/phpstan-shim": "*"
             },
-            "time": "2024-03-13T12:27:20+00:00",
+            "time": "2024-03-18T16:53:53+00:00",
             "bin": [
                 "phpstan",
                 "phpstan.phar"
@@ -7812,17 +7812,17 @@
         },
         {
             "name": "zbateson/mb-wrapper",
-            "version": "1.2.0",
-            "version_normalized": "1.2.0.0",
+            "version": "1.2.1",
+            "version_normalized": "1.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zbateson/mb-wrapper.git",
-                "reference": "faf35dddfacfc5d4d5f9210143eafd7a7fe74334"
+                "reference": "09a8b77eb94af3823a9a6623dcc94f8d988da67f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zbateson/mb-wrapper/zipball/faf35dddfacfc5d4d5f9210143eafd7a7fe74334",
-                "reference": "faf35dddfacfc5d4d5f9210143eafd7a7fe74334",
+                "url": "https://api.github.com/repos/zbateson/mb-wrapper/zipball/09a8b77eb94af3823a9a6623dcc94f8d988da67f",
+                "reference": "09a8b77eb94af3823a9a6623dcc94f8d988da67f",
                 "shasum": ""
             },
             "require": {
@@ -7833,13 +7833,13 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "*",
                 "phpstan/phpstan": "*",
-                "phpunit/phpunit": "<=9.0"
+                "phpunit/phpunit": "<10.0"
             },
             "suggest": {
                 "ext-iconv": "For best support/performance",
                 "ext-mbstring": "For best support/performance"
             },
-            "time": "2023-01-11T23:05:44+00:00",
+            "time": "2024-03-18T04:31:04+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -7872,7 +7872,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zbateson/mb-wrapper/issues",
-                "source": "https://github.com/zbateson/mb-wrapper/tree/1.2.0"
+                "source": "https://github.com/zbateson/mb-wrapper/tree/1.2.1"
             },
             "funding": [
                 {

@@ -4,15 +4,15 @@ namespace Mhassan654\Pesapal\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Mhassan654\Pesapal\Exceptions\PesapalException;
-use Pesapal;
+use Mhassan654\Pesapal\Pesapal;
 
 class PesapalAPIController extends Controller
 {
 
     function handleCallback()
     {
-        $merchant_reference = request('order_merchant_reference');
-        $tracking_id = request('order_transaction_tracking_id');
+        $merchant_reference = request('OrderMerchantReference');
+        $tracking_id = request('OrderTrackingId');
         $route = config('pesapal.callback_route');
         return redirect()->route(
             $route,
@@ -29,10 +29,9 @@ class PesapalAPIController extends Controller
             $notification_type = request('OrderNotificationType');
             $merchant_reference = request('OrderMerchantReference');
             $tracking_id = request('OrderTrackingId');
-            Pesapal::redirectToIPN($notification_type, $merchant_reference, $tracking_id);
+            (new Pesapal)->redirectToIPN($notification_type, $merchant_reference, $tracking_id);
         } else {
             throw new PesapalException("incorrect parameters in request");
         }
     }
-    // Test bleeding edge
 }
