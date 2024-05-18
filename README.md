@@ -1,4 +1,5 @@
 # Pesapal Laravel 7,8,9,10 Web & Restful API
+
 ![Screenshot 2024-03-19 at 11 52 03](https://github.com/mhassan654/laravel-pesapal-sdk/assets/26597730/1b6d0751-c5a5-4bd1-9760-68463477c823)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mhassan654/pesapal.svg?style=flat-square)](https://packagist.org/packages/mhassan654/pesapal)
@@ -16,10 +17,11 @@ Add this package uis
 You can install the package via composer:
 
 ```bash
-composer require mhassan654/pesapal
+composer require mhassan654/laravel-pesapal-sdk
 ```
 
 ## Usage
+
 ### Update your config (for Laravel 5.4 and below)
 
 Add the service provider to the providers array in config/app.php:
@@ -28,19 +30,22 @@ Add the service provider to the providers array in config/app.php:
 
 Add the facade to the aliases array in config/app.php:
 
-`'Pesapal' => Mhassan654\Pesapal\Facades\Pesapal::class,` 
+`'Pesapal' => Mhassan654\Pesapal\Facades\Pesapal::class,`
 
 ### Publish the package configuration (for Laravel 5.4 and below)
 
 Publish the configuration file and migrations by running the provided console command:
 
-`php artisan vendor:publish --provider="Mhassan654\Pesapal\PesapalServiceProvider"`
+`php artisan vendor:publish --provider="Mhassan654\Pesapal\PesapalServiceProvider" --tag='config'`
 
 ## Setup
+
 ### Pesapal IPN
+
 For the url of the route use /pesapal-ipn eg mysite.com/pesapal-ipn as the IPN on the Pesapal Merchant settings dashboard
- 
+
 ### Environmental Variables
+
 PESAPAL\_CONSUMER\_KEY `pesapal consumer key`<br/>
 
 PESAPAL\_CONSUMER\_SECRET `pesapal consumer secret`<br/>
@@ -52,15 +57,18 @@ PESAPAL\_IPN `controller method to call for instant notifications IPN  as relati
 PESAPAL\_CALLBACK_ROUTE `route name to handle the callback eg Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'PaymentsController@paymentsuccess']);  The route name is "paymentsuccess"`<br/>
 
 ### Config
+
 <b>live</b> - Live or Demo environment<br/>
 
 The ENV Variables can also be set from here.
 
 ## Usage
+
 At the top of your controller include the facade<br/>
 `use Pesapal;`
 
 ### Example Code...Better Example..Haha
+
 Assuming you have a Payment Model <br/>
 
 ```php
